@@ -1,4 +1,4 @@
-﻿@model HMS.Areas.Dashboard.ViewModels.AccomodationPackageActionModel
+﻿@model HMS.Areas.Dashboard.ViewModels.AccomodationActionModel
 
 @if (Model != null)
 {
@@ -7,11 +7,11 @@
             <h5 class="modal-title">
                 @if (Model.ID > 0)
                 {
-                    <span>Edit Accomodation Package</span>
+                    <span>Edit Accomodation</span>
                 }
                 else
                 {
-                    <span>Create Accomodation Package</span>
+                    <span>Create Accomodation</span>
                 }
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -22,14 +22,14 @@
             <form id="actionForm">
                 <input type="hidden" name="ID" value="@Model.ID" />
                 <div class="form-group">
-                    <label>Accomodation Type</label>
-                    <select class="form-control" name="AccomodationTypeID">
-                        @if (Model.AccomodationTypes != null)
+                    <label>Accomodation Packages</label>
+                    <select class="form-control" name="AccomodationPackageID">
+                        @if (Model.AccomodationPackages != null)
                         {
-                            foreach (var accomodationType in Model.AccomodationTypes)
+                            foreach (var accomodationPackages in Model.AccomodationPackages)
                             {
-                                <option value="@accomodationType.ID" @(accomodationType.ID == Model.AccomodationTypeID ? "selected" : string.Empty)>
-                                    @accomodationType.Name
+                                <option value="@accomodationPackages.ID" @(accomodationPackages.ID == Model.AccomodationPackageID ? "selected" : string.Empty)>
+                                    @accomodationPackages.Name
                                 </option>
                             }
                         }
@@ -37,15 +37,11 @@
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input class="form-control" name="Name" placeholder="Enter Accomodation Package Name." value="@Model.Name">
+                    <input class="form-control" name="Name" placeholder="Enter Accomodation Name." value="@Model.Name">
                 </div>
                 <div class="form-group">
-                    <label>Number Of Rooms</label>
-                    <input class="form-control" name="NoOfRoom" placeholder="Enter No Of Rooms." value="@Model.NoOfRoom">
-                </div>
-                <div class="form-group">
-                    <label>Fee Per Night</label>
-                    <input class="form-control" name="FeePerNight" placeholder="Enter Fee Per Night." value="@Model.FeePerNight">
+                    <label>Description</label>
+                    <textarea class="form-control" name="Description" placeholder="Enter Accomodation Description.">@Model.Description</textarea>
                 </div>
             </form>
 
@@ -63,7 +59,7 @@
 <script>
 	$("#actionButton").click(function () {
 		$.ajax({
-			url: '@Url.Action("Action", "AccomodationPackages")',
+			url: '@Url.Action("Action", "Accomodations")',
 			type: "post",
 			data: $("#actionForm").serialize()
 		})

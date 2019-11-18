@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201911151514279_AccomodationsAdded.Designer.cs">
       <DependentUpon>201911151514279_AccomodationsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911181751436_UserProperties.cs" />
+    <Compile Include="Migrations\201911181751436_UserProperties.Designer.cs">
+      <DependentUpon>201911181751436_UserProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911151514279_AccomodationsAdded.resx">
       <DependentUpon>201911151514279_AccomodationsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911181751436_UserProperties.resx">
+      <DependentUpon>201911181751436_UserProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

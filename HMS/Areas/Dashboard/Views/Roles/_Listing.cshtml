@@ -2,38 +2,43 @@
 
 @if (Model != null && Model.Roles != null && Model.Roles.Count() > 0)
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Users</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">Users</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
 
-            @foreach (var role in Model.Roles)
-            {
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <button data-href="@Url.Action("Action", "Roles", new { ID = role.Id })" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal"><i class="fas fa-pen mr-1"></i> Edit</button>
-                        <button data-href="@Url.Action("Delete", "Roles", new { ID = role.Id })" type="button" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal"><i class="fas fa-trash-alt mr-1"></i> Delete</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+			@foreach (var role in Model.Roles)
+			{
+				<tr>
+					<td>
+						@role.Id
+					</td>
+					<td>
+						@role.Name
+					</td>
+					<td>
+						<a href="@Url.Action("Index", "Users", new { roleID = role.Id })">
+							@role.Users.Count
+						</a>
+					</td>
+					<td>
+						<button data-href="@Url.Action("Action", "Roles", new { ID = role.Id })" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal"><i class="fas fa-pen mr-1"></i> Edit</button>
+						<button data-href="@Url.Action("Delete", "Roles", new { ID = role.Id })" type="button" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal"><i class="fas fa-trash-alt mr-1"></i> Delete</button>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 
-    if (Model.Pager.EndPage > 1)
-    {
-        <nav>
+	if (Model.Pager.EndPage > 1)
+	{
+		<nav>
             <ul class="pagination">
                 @if (Model.Pager.CurrentPage > 1)
                 {
@@ -70,12 +75,12 @@
                     </li>
                 }
             </ul>
-        </nav>
-    }
+		</nav>
+	}
 }
 else
 {
-    <div class="alert alert-warning" role="alert">
-        Sorry! No records exist.
-    </div>
+	<div class="alert alert-warning" role="alert">
+		Sorry! No records exist.
+	</div>
 }

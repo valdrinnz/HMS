@@ -98,5 +98,12 @@ namespace HMS.Services
 
             return context.SaveChanges() > 0;
         }
+
+        public List<AccomodationPackagePicture> GetPicturesByAccomodationPackageID(int accomodationPackageID)
+        {
+            var context = new HMSContext();
+
+            return context.AccomodationPackages.Find(accomodationPackageID).AccomodationPackagePictures.ToList();
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace HMS.Services
 
             return accomodationPackages.OrderBy(x => x.AccomodationTypeID).Skip(skip).Take(recordSize).ToList();
         }
+
         public int SearchAccomodationPackagesCount(string searchTerm, int? accomodationTypeID)
         {
             var context = new HMSContext();
@@ -68,10 +69,9 @@ namespace HMS.Services
 
         public AccomodationPackage GetAccomodationPackageByID(int ID)
         {
-            using (var context = new HMSContext())
-            {
-                return context.AccomodationPackages.Find(ID);
-            }
+            var context = new HMSContext();
+
+            return context.AccomodationPackages.Find(ID);
         }
 
         public bool SaveAccomodationPackage(AccomodationPackage accomodationPackage)
@@ -82,14 +82,22 @@ namespace HMS.Services
 
             return context.SaveChanges() > 0;
         }
+
         public bool UpdateAccomodationPackage(AccomodationPackage accomodationPackage)
         {
             var context = new HMSContext();
 
-            context.Entry(accomodationPackage).State = System.Data.Entity.EntityState.Modified;
+            var exitingAccomodationPackage = context.AccomodationPackages.Find(accomodationPackage.ID);
+
+            context.AccomodationPackagePictures.RemoveRange(exitingAccomodationPackage.AccomodationPackagePictures);
+
+            context.Entry(exitingAccomodationPackage).CurrentValues.SetValues(accomodationPackage);
+
+            context.AccomodationPackagePictures.AddRange(accomodationPackage.AccomodationPackagePictures);
 
             return context.SaveChanges() > 0;
         }
+
         public bool DeleteAccomodationPackage(AccomodationPackage accomodationPackage)
         {
             var context = new HMSContext();

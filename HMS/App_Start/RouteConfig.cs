@@ -28,6 +28,13 @@ namespace HMS
             );
 
             routes.MapRoute(
+                name: "CheckAvailability",
+                url: "accomodation-check-availability",
+                defaults: new { area = "", controller = "Accomodations", action = "CheckAvailability" },
+                namespaces: new[] { "HMS.Controllers" }
+);
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

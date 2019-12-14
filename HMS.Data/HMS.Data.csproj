@@ -58,25 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HMSContext.cs" />
-    <Compile Include="Migrations\201911111325399_initialized.cs" />
-    <Compile Include="Migrations\201911111325399_initialized.Designer.cs">
-      <DependentUpon>201911111325399_initialized.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911141246077_CrudAccomodations.cs" />
-    <Compile Include="Migrations\201911141246077_CrudAccomodations.Designer.cs">
-      <DependentUpon>201911141246077_CrudAccomodations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911151514279_AccomodationsAdded.cs" />
-    <Compile Include="Migrations\201911151514279_AccomodationsAdded.Designer.cs">
-      <DependentUpon>201911151514279_AccomodationsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911181751436_UserProperties.cs" />
-    <Compile Include="Migrations\201911181751436_UserProperties.Designer.cs">
-      <DependentUpon>201911181751436_UserProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912041318590_PictureAdded.cs" />
-    <Compile Include="Migrations\201912041318590_PictureAdded.Designer.cs">
-      <DependentUpon>201912041318590_PictureAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201912140918474_All.cs" />
+    <Compile Include="Migrations\201912140918474_All.Designer.cs">
+      <DependentUpon>201912140918474_All.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,20 +76,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911111325399_initialized.resx">
-      <DependentUpon>201911111325399_initialized.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911141246077_CrudAccomodations.resx">
-      <DependentUpon>201911141246077_CrudAccomodations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911151514279_AccomodationsAdded.resx">
-      <DependentUpon>201911151514279_AccomodationsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911181751436_UserProperties.resx">
-      <DependentUpon>201911181751436_UserProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912041318590_PictureAdded.resx">
-      <DependentUpon>201912041318590_PictureAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912140918474_All.resx">
+      <DependentUpon>201912140918474_All.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

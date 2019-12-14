@@ -3,10 +3,33 @@ namespace HMS.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initialized : DbMigration
+    public partial class All : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.AccomodationPackagePictures",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        AccomodationPackageID = c.Int(nullable: false),
+                        PictureID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Pictures", t => t.PictureID, cascadeDelete: true)
+                .ForeignKey("dbo.AccomodationPackages", t => t.AccomodationPackageID, cascadeDelete: true)
+                .Index(t => t.AccomodationPackageID)
+                .Index(t => t.PictureID);
+            
+            CreateTable(
+                "dbo.Pictures",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        URL = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
+            
             CreateTable(
                 "dbo.AccomodationPackages",
                 c => new
@@ -30,6 +53,20 @@ namespace HMS.Data.Migrations
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.AccomodationPictures",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        AccomodationID = c.Int(nullable: false),
+                        PictureID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Pictures", t => t.PictureID, cascadeDelete: true)
+                .ForeignKey("dbo.Accomodations", t => t.AccomodationID, cascadeDelete: true)
+                .Index(t => t.AccomodationID)
+                .Index(t => t.PictureID);
             
             CreateTable(
                 "dbo.Accomodations",
@@ -85,6 +122,10 @@ namespace HMS.Data.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FullName = c.String(),
+                        Country = c.String(),
+                        City = c.String(),
+                        Address = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -134,8 +175,12 @@ namespace HMS.Data.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Bookings", "AccomodationID", "dbo.Accomodations");
+            DropForeignKey("dbo.AccomodationPictures", "AccomodationID", "dbo.Accomodations");
             DropForeignKey("dbo.Accomodations", "AccomodationPackageID", "dbo.AccomodationPackages");
+            DropForeignKey("dbo.AccomodationPictures", "PictureID", "dbo.Pictures");
             DropForeignKey("dbo.AccomodationPackages", "AccomodationTypeID", "dbo.AccomodationTypes");
+            DropForeignKey("dbo.AccomodationPackagePictures", "AccomodationPackageID", "dbo.AccomodationPackages");
+            DropForeignKey("dbo.AccomodationPackagePictures", "PictureID", "dbo.Pictures");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -144,7 +189,11 @@ namespace HMS.Data.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Bookings", new[] { "AccomodationID" });
             DropIndex("dbo.Accomodations", new[] { "AccomodationPackageID" });
+            DropIndex("dbo.AccomodationPictures", new[] { "PictureID" });
+            DropIndex("dbo.AccomodationPictures", new[] { "AccomodationID" });
             DropIndex("dbo.AccomodationPackages", new[] { "AccomodationTypeID" });
+            DropIndex("dbo.AccomodationPackagePictures", new[] { "PictureID" });
+            DropIndex("dbo.AccomodationPackagePictures", new[] { "AccomodationPackageID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
@@ -152,8 +201,11 @@ namespace HMS.Data.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Bookings");
             DropTable("dbo.Accomodations");
+            DropTable("dbo.AccomodationPictures");
             DropTable("dbo.AccomodationTypes");
             DropTable("dbo.AccomodationPackages");
+            DropTable("dbo.Pictures");
+            DropTable("dbo.AccomodationPackagePictures");
         }
     }
 }
